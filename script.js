@@ -36,12 +36,20 @@ button.textContent = "submit";
 container.append(button);
 
 button.addEventListener("click", () => {
+  for (let i = 0; i < 1000; i++) {
+    const { randomColor, ballSize, ballX, ballY } = genParams();
+    container.append(makeBall(randomColor, ballSize, ballX, ballY));
+  }
+});
+
+// util funcs
+function genParams() {
   const randomColor = colors[Math.floor(Math.random() * colors.length)];
   const ballSize = Math.floor(Math.random() * 20);
   const ballX = Math.floor(Math.random() * 80);
   const ballY = Math.floor(Math.random() * 60);
-  container.append(makeBall(randomColor, ballSize, ballX, ballY));
-});
+  return { randomColor, ballSize, ballX, ballY };
+}
 
 function makeBall(color, ballSize, ballX, ballY) {
   const ball = document.createElement("div");
